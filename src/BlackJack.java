@@ -5,7 +5,7 @@ import java.util.Random;
 import javax.swing.*;
 
 public class BlackJack {
-    prvate class Card {
+    private class Card {
         String value;
         String type;
 
@@ -13,17 +13,23 @@ public class BlackJack {
             this.value = value;
             this.type = type;
         }
+
+        public String toString() {
+            return value + "-" + type;
+        }
     }
 
     ArrayList<Card> deck;
+    Random random = new Random(); //shuffling the deck
 
     BlackJack() {
         startGame();
     }
 
-    public void start Game() {
+    public void startGame() {
         //deck = new ArrayList<Card>();
         buildDeck();
+        shuffleDeck();
     }
 
     public void buildDeck() {
@@ -31,8 +37,8 @@ public class BlackJack {
         String[] values = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
         String[] types = {"H", "D", "C", "S"};
 
-        for(int i = 0, i < types.length; i++) {
-            for (int j = < values.length; j++) {
+        for(int i = 0; i < types.length; i++) {
+            for (int j = 0; j < values.length; j++) {
                 Card card = new Card(values[j], types[i]);
                 deck.add(card);
             }
@@ -41,4 +47,22 @@ public class BlackJack {
         System.out.println("Built deck:");
         System.out.println(deck);
     }
+
+    public void shuffleDecl() {
+        for (int i = 0; i < deck.size(); i++) {
+            int j = random.nextInt(deck.size());
+            Card currCard = deck.get(i);
+            Card randomCard = deck.get(i);
+            deck.set(i, randomCard);
+            deck.set(j, currCard);
+        }
+
+        System.out.println("After Shuffle");
+        System.out.println(deck);
+    }
 }
+
+/*
+ * https://www.youtube.com/watch?v=GMdgjaDdOjI&list=PLnKe36F30Y4Y1XQOqNsL9Fgg_p6nYhcng&index=4
+ * Minute 16:05
+ */
